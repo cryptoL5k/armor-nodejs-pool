@@ -6,7 +6,7 @@
 	"Maintained by": "Musclesonvacation",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/dvandal/cryptonote-nodejs-pool.git"
+		"url": "https://github.com/noritte/armor-nodejs-pool.git"
 	},
 	"dependencies": {
 		"async": "1",
@@ -22,8 +22,7 @@
 		"nodemailer-sendmail-transport": "*",
 		"redis": "*",
 		"socket.io": "^2.1.1",
-		"time-ago": "*",
-		"turtlecoin-multi-hashing": "https://github.com/turtlecoin/node8-multi-hashing.git"
+		"time-ago": "*"
 	},
 	"engines": {
 		"node": ">=8.11.3"

@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <!-- Mining Applications and Configuration Generator -->
@@ -79,7 +79,7 @@
         <div class="col-sm-6 col-xs-12">
             <div class="input-group push-down-5">
                 <span class="input-group-addon"><i class="fa fa-server"></i></span>
-                <input class="form-control" id="gWorkerName" data-tplaceholder="workerNameField" type="text" placeholder="Worker_Name" /> 
+                <input class="form-control" id="gWorkerName" data-tplaceholder="workerNameField" type="text" placeholder="Worker_Name" />
             </div>
         </div>
         <div class="col-sm-6 col-xs-12">
@@ -132,7 +132,7 @@
             </tr>
             </thead>
             <tbody id="miningApps_rows">
-	    
+
 	    <!-- XMR Stak -->
             <tr class="appInfo">
                 <td class="miningAppTitle">XMR Stak</td>
@@ -144,7 +144,7 @@
             <tr class="appConfig">
                 <td colspan="5">
                     <div class="collapse" id="xmrstak">
-		
+
 <pre><code>"pool_list": [
     {
         "pool_address": "<span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span>",
@@ -162,7 +162,7 @@
                     </div>
                 </td>
             </tr>
-	    
+
 	    <!-- XMRig -->
             <tr class="appInfo">
                 <td class="miningAppTitle">XMRig</td>
@@ -174,7 +174,7 @@
             <tr class="appConfig">
                 <td colspan="5">
                     <div class="collapse" id="xmrig">
-		
+
 <pre><code>"pools": [
     {
         "url": "<span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span>",
@@ -202,7 +202,7 @@
             <tr class="appConfig">
                 <td colspan="5">
                     <div class="collapse" id="xmrig-amd">
-		
+
 <pre><code>"pools": [
     {
         "url": "<span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span>",
@@ -230,7 +230,7 @@
             <tr class="appConfig">
                 <td colspan="5">
                     <div class="collapse" id="xmrig-nvidia">
-		
+
 <pre><code>"pools": [
     {
         "url": "<span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span>",
@@ -258,7 +258,7 @@
             <tr class="appConfig">
                 <td colspan="5">
                     <div class="collapse" id="xmrig-cc">
-		
+
 <pre><code>"pools": [
     {
         "url": "<span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span>",
@@ -286,13 +286,13 @@
             <tr class="appConfig">
                 <td colspan="5">
                     <div class="collapse" id="teamRedMiner">
-<pre><code>teamredminer.ext -a cnv8 trtle -o stratum+tcp//<span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span> -u "<span class="exampleLogin">YOUR_WALLET_ADDRESS</span>" -p "<span class="examplePassword">YOUR_WORKER_NAME</span>" 
+<pre><code>teamredminer.ext -a cnv8 trtle -o stratum+tcp//<span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span> -u "<span class="exampleLogin">YOUR_WALLET_ADDRESS</span>" -p "<span class="examplePassword">YOUR_WORKER_NAME</span>"
 </code></pre>
 
                     </div>
                 </td>
             </tr>
-	    
+
             </tbody>
         </table>
     </div>
@@ -419,7 +419,7 @@ currentPage = {
                 algorithm = 'CryptoNight v8 ReverseWaltz';
                 xmrstakAlgo = 'cryptonight_v8_reversewaltz';
             } else if (cnVariant === 15) {
-                algorithm = 'CryptoNight Zelerius';
+                algorithm = 'CryptoNight ZLS';
                 xmrstakAlgo = 'cryptonight_v8_zelerius';
             } else if (cnVariant === 16) {
                 algorithm = 'CryptoNight v8 Double';
@@ -469,4 +469,3 @@ $('#generateConf').click(function() {
 });
 
 </script>
-

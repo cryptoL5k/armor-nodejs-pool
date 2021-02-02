@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
 
     <title>Arqma with PLE or XCY or TRTL Mining Pool</title>
-    <meta name="Description" content="Arqma with PLE or XCY or TRTL Mining Pool.  Cryptocurrency mining. Mine direct to exchange or wallet.  Low pool fees and fast payments!">
-    <meta name="keywords" content="Arqma, turtle, ple, xcy, Merged, mining, pool, cryptocurrency, exchange, bitrex, coinmarketcap, tradeogre, payments, coinbase, escodex, bitrex">
+    <meta name="Description" content="Armor Mining Pool">
+    <meta name="keywords" content="Armor, netowrk, Arqma, turtle, ple, xcy, Merged, mining, pool, cryptocurrency, exchange, bitrex, coinmarketcap, tradeogre, payments, coinbase, escodex, bitrex">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.3/jquery.timeago.min.js"></script>
@@ -134,7 +134,7 @@ function getCurrentAddress(coin) {
     if (coin) {
         let urlWalletAddress = getUrlParam(coin, 0);
         address = urlWalletAddress || docCookies.getItem(`mining_address_${coin}`);
-    }   
+    }
     return address;
 }
 
@@ -182,7 +182,7 @@ function updateIndex(){
 // Load live statistics
 function loadLiveStats(reload) {
 
-    
+
     let apiURL = api + '/stats';
     let address = getCurrentAddress();
     if (address) { apiURL = apiURL + '?address=' + encodeURIComponent(address); }
@@ -219,8 +219,8 @@ let xhrLiveStats = {};
 function fetchLiveStats(endPoint, key) {
     let apiURL = endPoint + '/live_stats';
     let address = getCurrentAddress(key);
-    if (address) { 
-    apiURL = apiURL + '?address=' + encodeURIComponent(address); 
+    if (address) {
+    apiURL = apiURL + '?address=' + encodeURIComponent(address);
     }
 
     // if (xhrLiveStats[key] && xhrLiveStats[key].status !== 200){
@@ -292,7 +292,7 @@ $(function(){
     }
 
 
-    if (xhrBlockExplorers) 
+    if (xhrBlockExplorers)
         xhrBlockExplorers.abort();
     if (xhrMergedApis)
     xhrMergedApis.abort();

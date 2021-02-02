@@ -1,17 +1,17 @@
 {
 	"poolHost": "your.pool.host",
 
-	"coin": "sumokoin",
-	"symbol": "SUMO",
-	"coinUnits": 1000000000,
-	"coinDecimalPlaces": 4,
-	"coinDifficultyTarget": 240,
-	"blockchainExplorer": "http://blockexplorer.arqma.com/block/{id}",
-	"transactionExplorer": "http://blockexplorer.arqma.com/tx/{id}",
+	"coin": "deafult",
+	"symbol": "AMX",
+	"coinUnits": 100000000,
+	"coinDecimalPlaces": 8,
+	"coinDifficultyTarget": 120,
+	"blockchainExplorer": "http://explorer.armornetwork.org/block/{id}",
+	"transactionExplorer": "http://explorer.armornetwork.org/tx/{id}",
 	"daemonType": "default",
 	"cnAlgorithm": "cryptonight",
-	"cnVariant": 13,
-	"cnBlobType": 0,
+	"cnVariant": 15,
+	"cnBlobType": 2,
 
 	"logging": {
 		"files": {
@@ -24,15 +24,13 @@
 			"colors": true
 		}
 	},
-	"includeHeight": true,
-	"includeAlgo": "cn/r",
 	"childPools": null,
 	"poolServer": {
 		"enabled": true,
 		"mergedMining": false,
 		"clusterForks": "auto",
 		"poolAddress": "** Your pool wallet address **",
-		"intAddressPrefix": 536986,
+		"intAddressPrefix": 1717961,
 		"blockRefreshInterval": 1000,
 		"minerTimeout": 900,
 		"sslCert": "./cert.pem",
@@ -40,34 +38,23 @@
 		"sslCA": "./chain.pem",
 		"ports": [
 			{
-				"port": 3333,
-				"difficulty": 5000,
+				"port": 4000,
+				"difficulty": 1000,
 				"desc": "Low end hardware"
             },
 			{
-				"port": 4444,
-				"difficulty": 15000,
+				"port": 4001,
+				"difficulty": 5000,
 				"desc": "Mid range hardware"
             },
 			{
-				"port": 5555,
-				"difficulty": 25000,
+				"port": 4002,
+				"difficulty": 20000,
 				"desc": "High end hardware"
             },
 			{
-				"port": 7777,
-				"difficulty": 500000,
-				"desc": "Cloud-mining / NiceHash"
-            },
-			{
-				"port": 8888,
-				"difficulty": 25000,
-				"desc": "Hidden port",
-				"hidden": true
-            },
-			{
-				"port": 9999,
-				"difficulty": 20000,
+				"port": 4003,
+				"difficulty": 5000,
 				"desc": "SSL connection",
 				"ssl": true
             }
@@ -113,26 +100,26 @@
 
 	"payments": {
 		"enabled": true,
-		"interval": 1800,
+		"interval": 300,
 		"maxAddresses": 50,
-		"mixin": 12,
+		"mixin": 6,
 		"priority": 0,
-		"transferFee": 1000,
+		"transferFee": 50000000,
 		"dynamicTransferFee": true,
 		"minerPayFee": true,
-		"minPayment": 10000000000,
-		"maxPayment": null,
-		"maxTransactionAmount": 0,
+		"minPayment": 100000000,
+		"maxTransactionAmount": 500000000000,
 		"denomination": 10000000
 	},
 
 	"blockUnlocker": {
 		"enabled": true,
 		"interval": 30,
-		"depth": 60,
-		"poolFee": 0.8,
-		"devDonation": 0.2,
-		"networkFee": 0.0
+		"depth": 20,
+		"poolFee": 2,
+		"devDonation": 0.0,
+		"networkFee": 0.0,
+		"fixBlockHeightRPC": false
 	},
 
 	"api": {
@@ -140,12 +127,12 @@
 		"hashrateWindow": 600,
 		"updateInterval": 5,
 		"bindIp": "0.0.0.0",
-		"port": 8117,
+		"port": 4009,
 		"blocks": 30,
 		"payments": 30,
 		"password": "your_password",
 		"ssl": false,
-		"sslPort": 8119,
+		"sslPort": 4010,
 		"sslCert": "./cert.pem",
 		"sslKey": "./privkey.pem",
 		"sslCA": "./chain.pem",
@@ -154,12 +141,13 @@
 
 	"daemon": {
 		"host": "127.0.0.1",
-		"port": 19734
+		"port": 58081
 	},
 
 	"wallet": {
 		"host": "127.0.0.1",
-		"port": 19735
+		"port": 58082,
+		"password": "user:pass"
 	},
 
 	"redis": {
@@ -230,7 +218,6 @@
 
 	"telegram": {
 		"enabled": false,
-		"botName": "",
 		"token": "",
 		"channel": "",
 		"channelStats": {
@@ -239,20 +226,19 @@
 		},
 		"botCommands": {
 			"stats": "/stats",
-			"report": "/report",
-			"notify": "/notify",
-			"blocks": "/blocks"
+			"enable": "/enable",
+			"disable": "/disable"
 		}
 	},
 
 	"monitoring": {
 		"daemon": {
 			"checkInterval": 60,
-			"rpcMethod": "getblockcount"
+			"rpcMethod": "get_status"
 		},
 		"wallet": {
 			"checkInterval": 60,
-			"rpcMethod": "getbalance"
+			"rpcMethod": "get_balance"
 		}
 	},
 
@@ -316,10 +302,6 @@
 			"payments": {
 				"enabled": true
 			}
-		},
-		"blocks": {
-			"enabled": true,
-			"days": 30
 		}
 	}
 }
