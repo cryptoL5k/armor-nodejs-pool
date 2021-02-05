@@ -694,7 +694,7 @@ function poolBlocks_InitTemplate(ranOnce, displayedChart, xhrGetBlocks) {
         Mustache.parse(template)
         let rendered = Mustache.render(template, {coin:lastStats.config.coin, symbol:`(${lastStats.config.symbol})`, active:'active'});
         $('#blocksTabs').append(rendered)
-        
+
         poolBlocks_Setup(api, lastStats, xhrGetBlocks)
     }
 
@@ -772,7 +772,7 @@ function poolBlocks_InitTemplate(ranOnce, displayedChart, xhrGetBlocks) {
         poolBlocks_RenderBlocks(mergedStats[key].pool.blocks, mergedStats[key]);
     })
     sortElementList($(`#blocksTabs`), $(`#blocksTabs>div`), mergedStats)
-    if (!ranOnce) 
+    if (!ranOnce)
         ranOnce = RunOnce()
 }
 
@@ -787,7 +787,7 @@ function top10Miners_GetMinerCells(position, data){
     var hashrate = data.hashrate ? data.hashrate : 0;
     var lastShare = data.lastShare ? data.lastShare : 0;
     var hashes = (data.hashes || 0).toString();
-    
+
     return '<td class="col1" data-sort="' + position + '">' + position + '</td>' +
            '<td class="col2" data-sort="' + miner + '">' + miner + '</td>' +
            '<td class="col3" data-sort="' + hashrate + '">' + getReadableHashRateString(hashrate) + '/sec</td>' +
@@ -934,7 +934,7 @@ function settings_ShowSuccess(id, message, stats) {
 
 // Get current payout level
 function settings_GetPayoutLevel(api, address, stats) {
-    if (!address || address == '') 
+    if (!address || address == '')
         return;
     $.ajax({
         url: `${api}/get_miner_payout_level`,
@@ -948,7 +948,7 @@ function settings_GetPayoutLevel(api, address, stats) {
             $(`#yourPayoutRate${stats.config.coin}`).val(data.level);
         }
     });
-} 
+}
 
 // Set payout level
 function settings_SetPayoutLevel(api, address, ip, level, stats) {
@@ -984,7 +984,7 @@ function settings_IsEmail(email) {
 // Get current email address for notifications
 function settings_GetEmailAddress(endPoint, address, stats) {
     if (!address || address == '') return;
-    
+
     $.ajax({
         url: `${endPoint}/get_email_notifications`,
         data: {
@@ -998,7 +998,7 @@ function settings_GetEmailAddress(endPoint, address, stats) {
         }
     });
 }
-    
+
 // Set email address for notifications
 function settings_SetEmailNotifications(stats, endPoint, email, address, ip, enable) {
     var address = $(`#yourAddress${stats.config.coin}`).val().trim();
@@ -1065,7 +1065,7 @@ function settings_InitTemplate(ranOnce) {
 
     Object.keys(mergedStats).forEach(key => {
         if ($(`#blocksTabs li:contains(${key})`).length === 0) {
-            if (!mergedStats[key].config.sendEmails) 
+            if (!mergedStats[key].config.sendEmails)
                 $(`#emailNotifications${mergedStats[key].config.coin}`).hide();
             template = $('#siblingTemplate').html()
             Mustache.parse(template)
@@ -1081,7 +1081,7 @@ function settings_InitTemplate(ranOnce) {
         }
     })
     sortElementList($(`#blocksTabs`), $(`#blocksTabs>li`), mergedStats)
-    if (!ranOnce) 
+    if (!ranOnce)
       ranOnce = RunOnce()
 }
 
@@ -1221,7 +1221,7 @@ function payments_InitTemplate(xhrGetPayments, ranOnce) {
           payments_renderPayments(mergedStats[key].pool.payments, mergedStats[key]);
         })
         sortElementList($(`#blocksTabs`), $(`#blocksTabs>li`), mergedStats)
-        if (!ranOnce) 
+        if (!ranOnce)
           ranOnce = RunOnce()
 }
 
@@ -1233,21 +1233,21 @@ market methods
 
 function market_LoadMarketData(api, stats, loadedData, currencyPairs, xhrMarketGets, marketPrices) {
     if (loadedData[stats.config.coin]) return ;
-        
+
     if (typeof marketCurrencies !== 'undefined' && marketCurrencies.length > 0){
         let intervalMarketPolling = setInterval(market_UpdateMarkets(api, stats, currencyPairs, xhrMarketGets, marketPrices), 300000);
         market_UpdateMarkets(api, stats, currencyPairs, xhrMarketGets, marketPrices);
     } else {
         $(`#marketInfos${stats.config.coin}`).hide();
     }
-    
+
     loadedData[stats.config.coin] = true;
 }
-    
+
 // Market data polling (poll data every 5 minutes)
 function market_UpdateMarkets(api, stats, currencyPairs, xhrMarketGets, marketPrices){
     if (typeof marketCurrencies === 'undefined' || marketCurrencies.length === 0) return ;
-    
+
     currencyPairs[stats.config.coin] = []
 
     for (let i = 0; i < marketCurrencies.length; i++){
@@ -1300,7 +1300,7 @@ function market_RenderMarketPrice(base, target, price, source, stats, marketPric
     if (target == 'EUR') icon = 'fa-eur';
     if (target == 'GBP') icon = 'fa-gbp';
     if (target == 'JPY') icon = 'fa-jpy';
-            
+
     if (base == stats.config.symbol.toUpperCase()) {
         marketPrices[stats.config.coin][target] = price;
     }
@@ -1325,7 +1325,7 @@ function market_RenderMarketPrice(base, target, price, source, stats, marketPric
     $(`#marketInfos${stats.config.coin}`).append(
         '<div class="col-lg-3 col-md-4 col-sm-6 marketTicker"><div class="infoBox hoverExpandEffect">' +
         '<div class="icon"><span class="fa '+ icon + '"></span></div>' +
-        '<div class="content">' + 
+        '<div class="content">' +
                 '<div class="text">' + base + ' to ' + target + '</div>' +
                 '<div class="value">' + price + '</div>' +
         '<div class="source">Source: ' + source + '</div>' +
@@ -1511,13 +1511,13 @@ function market_InitTemplate(ranOnce, chartsInitialized, loadedData, marketPrice
         Mustache.parse(template)
         let rendered = Mustache.render(template, {coin:lastStats.config.coin, symbol:`(${lastStats.config.symbol})`, active:'active'});
         $('#blocksTabs').append(rendered)
-        
+
         let template1 = $('#siblingMarketTemplate').html()
         Mustache.parse(template1)
         let rendered1 = Mustache.render(template1, {coin:coin, active:'active'})
         $(`#tab-content`).append(rendered1)
 
-      
+
         let template2 = $('#siblingCalculatorTemplate').html()
         Mustache.parse(template2)
         let rendered2 = Mustache.render(template2, {coin:coin})
@@ -1571,7 +1571,7 @@ function market_InitTemplate(ranOnce, chartsInitialized, loadedData, marketPrice
 
 sortElementList($(`#blocksTabs`), $(`#blocksTabs>li`), mergedStats)
 
-   if (!ranOnce) 
+   if (!ranOnce)
         ranOnce = RunOnce()
 }
 
@@ -1585,7 +1585,7 @@ function workerstats_Setup(stats, api, addressTimeout, xhrAddressPoll, xhrGetPay
 
     // Enable time ago on last submitted share
     $(`#yourLastShare${stats.config.coin}`).timeago();
-    
+
     $(`#lookUp${stats.config.coin}`).click(function(){
         var address = $(`#yourStatsInput${stats.config.coin}`).val().trim();
 
@@ -1637,9 +1637,9 @@ function workerstats_Setup(stats, api, addressTimeout, xhrAddressPoll, xhrGetPay
     else {
         $(`#lookUp${stats.config.coin} > span:last-child`).hide();
         $(`#lookUp${stats.config.coin} > span:first-child`).show();
-        $(`#addressError${stats.config.coin}, .yourStats${stats.config.coin}, .yourWorkers${stats.config.coin}, .userChart${stats.config.coin}`).hide(); 
+        $(`#addressError${stats.config.coin}, .yourStats${stats.config.coin}, .yourWorkers${stats.config.coin}, .userChart${stats.config.coin}`).hide();
     }
-    
+
     $(`#yourStatsInput${stats.config.coin}`).keyup(function(e){
         if(e.keyCode === 13)
             $(`#lookUp${stats.config.coin}`).click();
@@ -1652,7 +1652,7 @@ function workerstats_Setup(stats, api, addressTimeout, xhrAddressPoll, xhrGetPay
 
     // Load more payments button
     $(`#loadMorePayments${stats.config.coin}`).click(function(xhrGetPayments){
-        if (xhrGetPayments[stats.config.coin]) 
+        if (xhrGetPayments[stats.config.coin])
             xhrGetPayments[stats.config.coin].abort();
 
         xhrGetPayments[stats.config.coin] = $.ajax({
@@ -1774,7 +1774,6 @@ function workerstats_FetchAddressStats(longpoll, stats, api, xhrAddressPoll){
                 }
                 poolFee += totalDonation;
             }
-            let transferFee = stats.config.transferFee;
 
             let share_pct = userRoundHashes * 100 / poolRoundHashes;
             let score_pct = userRoundScore * 100 / poolRoundScore;
@@ -1786,8 +1785,7 @@ function workerstats_FetchAddressStats(longpoll, stats, api, xhrAddressPoll){
 
             let payoutEstimatePct = parseFloat(userRoundHashes * 100 / poolRoundHashes)
             let payoutEstimate = Math.round(lastReward * (payoutEstimatePct / 100));
-                if (transferFee) payoutEstimate = payoutEstimate - transferFee;
-            if (payoutEstimate < 0) 
+            if (payoutEstimate < 0)
                 payoutEstimate = 0;
             updateText(`yourPayoutEstimate${stats.config.coin}`, getReadableCoin(stats, payoutEstimate));
 
@@ -1807,7 +1805,7 @@ function workerstats_FetchAddressStats(longpoll, stats, api, xhrAddressPoll){
             if (e.statusText === 'abort') return;
             $(`#addressError${stats.config.coin}`).text('Connection error').show();
 
-            if (addressTimeout[stats.config.coin]) 
+            if (addressTimeout[stats.config.coin])
                 clearTimeout(addressTimeout[stats.config.coin]);
 
             addressTimeout[stats.config.coin] = setTimeout(function(){
@@ -2077,7 +2075,7 @@ function workerstats_InitTemplate(ranOnce, addressTimeout, xhrAddressPoll, xhrGe
       Mustache.parse(template)
       rendered = Mustache.render(template, {coin:coin, active: 'active'})
       $('#tab-content').append(rendered)
-      workerstats_Setup(lastStats, api, addressTimeout, xhrAddressPoll, xhrGetPayments)       
+      workerstats_Setup(lastStats, api, addressTimeout, xhrAddressPoll, xhrGetPayments)
     }
 
     Object.keys(mergedStats).forEach(key => {
@@ -2098,8 +2096,8 @@ function workerstats_InitTemplate(ranOnce, addressTimeout, xhrAddressPoll, xhrGe
 
     sortElementList($(`#blocksTabs`), $(`#blocksTabs>li`), mergedStats)
 
-    if (!ranOnce) 
-        ranOnce = RunOnce()    
+    if (!ranOnce)
+        ranOnce = RunOnce()
 }
 
 
@@ -2191,15 +2189,15 @@ function home_InitTemplate(parentStats, siblingStats) {
     let efforts = []
 
     if ($(`#networkStats${coin}`).length == 0) {
-        minerInfo.push({blocks: parentStats.pool.totalBlocks.toString(), 
+        minerInfo.push({blocks: parentStats.pool.totalBlocks.toString(),
                         blocksSolo: parentStats.pool.totalBlocksSolo.toString(),
-                        coin: coin, 
-                        symbol: parentStats.config.symbol, 
+                        coin: coin,
+                        symbol: parentStats.config.symbol,
                         miners: parentStats.pool.miners.toString(),
                         minersSolo: parentStats.pool.minersSolo.toString()})
-        
+
         efforts.push({coin: coin, effort: `${(parentStats.pool.roundHashes / parentStats.network.difficulty * 100).toFixed(1)}%`,symbol: parentStats.config.symbol})
-        
+
         let template = $('#siblingTemplate').html()
         Mustache.parse(template)
         let rendered = Mustache.render(template, {coin: coin, symbol: parentStats.config.symbol})
@@ -2221,15 +2219,15 @@ function home_InitTemplate(parentStats, siblingStats) {
 
     Object.keys(siblingStats).forEach(key => {
         home_GenerateNetworkStats(key, siblingStats[key].config.symbol)
-        
-        minerInfo.push({blocks: siblingStats[key].pool.totalBlocks.toString(), 
+
+        minerInfo.push({blocks: siblingStats[key].pool.totalBlocks.toString(),
                         blocksSolo: siblingStats[key].pool.totalBlocksSolo.toString(),
                         coin: key,
-                        symbol: siblingStats[key].config.symbol, 
+                        symbol: siblingStats[key].config.symbol,
                         miners: siblingStats[key].pool.miners.toString(),
                         minersSolo: siblingStats[key].pool.minersSolo.toString()})
-        
-        efforts.push({coin: key, effort: `${(siblingStats[key].pool.roundHashes / siblingStats[key].network.difficulty * 100).toFixed(1)}%`, symbol: siblingStats[key].config.symbol});     
+
+        efforts.push({coin: key, effort: `${(siblingStats[key].pool.roundHashes / siblingStats[key].network.difficulty * 100).toFixed(1)}%`, symbol: siblingStats[key].config.symbol});
 
         if (siblingStats[key].pool.lastBlockFound) {
             let lastChildBlockFound = parseInt(siblingStats[key].pool.lastBlockFound)
@@ -2247,7 +2245,7 @@ function home_InitTemplate(parentStats, siblingStats) {
     })
 
     sortElementList($(`#networkStats`), $(`#networkStats>div`), siblingStats)
-    
+
     if ($(`#poolDetails > div`).length == 0) {
         let template = $('#poolDetailTemplate').html()
         Mustache.parse(template)
@@ -2261,7 +2259,7 @@ function home_InitTemplate(parentStats, siblingStats) {
         let rendered = Mustache.render(template, {coin:parentStats.config.coin, blocks: minerInfo, efforts: efforts})
         $(`#mainPoolStats`).append(rendered)
     }
-    
+
 
     if (lastBlockFound) {
         $('#poolLastBlockFound').timeago('update', new Date(lastBlockFound).toISOString());
